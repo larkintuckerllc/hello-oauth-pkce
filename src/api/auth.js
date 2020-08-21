@@ -46,7 +46,7 @@ export const loadAuthorizationURL = () => {
   const authorizationURL = [
     `${authorizationEP}?`,
     'response_type=code&',
-    `client_id=${clientId}&'`,
+    `client_id=${clientId}&`,
     `redirect_uri=${redirectEP}&`,
     `scope=${scope}&`,
     `code_challenge_method=S256&`,
