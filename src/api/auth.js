@@ -17,6 +17,12 @@ const sha256 = buffer => {
   return cryptoBrowserify.createHash('sha256').update(buffer).digest();
 }
 
+/** get authenticated status */
+export const getAuthenticated  = () => {
+  const accessToken = window.localStorage.getItem('accessToken');
+  return accessToken !== null;
+}
+
 /** get tokens */
 export const getTokens = () => {
   const accessToken = window.localStorage.getItem('accessToken');
@@ -93,4 +99,12 @@ export const refreshTokens = async () => {
   const { access_token, id_token } = await response.json();
   window.localStorage.setItem('accessToken', access_token);
   window.localStorage.setItem('idToken', id_token);
+}
+
+/** logout */
+export const logout = () => {
+  window.localStorage.removeItem('accessToken');
+  window.localStorage.removeItem('idToken');
+  window.localStorage.removeItem('refreshToken');
+  window.location.reload();  
 }
